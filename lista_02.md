@@ -259,11 +259,69 @@ Classe FormaGeometrica:
         # Implementação genérica para cálculo de área, a ser sobrescrita pelas subclasses.
 
 ```
+```javascript
+Classe FormaGeometrica:
+    Atributos:
+        - cor
 
+    Método Construtor(cor):
+        Define o valor do atributo cor com o valor passado como parâmetro.
+
+    Método CalcularArea():
+        # Implementação genérica para cálculo de área, a ser sobrescrita pelas subclasses.
+
+Classe Retangulo herda da classe FormaGeometrica:
+    Atributos:
+        - base
+        - altura
+
+    Método Construtor(cor, base, altura):
+        Chama o construtor da classe base passando cor como parâmetro e define os valores dos atributos base e altura.
+
+    Método CalcularArea():
+        Retorna base * altura.
+
+Classe Circulo herda da classe FormaGeometrica:
+    Atributos:
+        - raio
+
+    Método Construtor(cor, raio):
+        Chama o construtor da classe base passando cor como parâmetro e define o valor do atributo raio.
+
+    Método CalcularArea():
+        Retorna π * raio * raio. 
+
+
+```
 ______
 
 **9)** Você foi contratado(a) como estagiário(a) da Tesla e está participando do desenvolvimento de um programa para simular o desempenho de um carro elétrico em uma corrida. Seu objetivo é determinar em quantos minutos o carro levará para completar uma determinada distância, levando em consideração uma velocidade inicial e uma taxa de aceleração constante. No entanto, você deseja garantir que o carro não exceda uma velocidade máxima nem que a corrida demore mais do que um tempo máximo. Implemente a lógica dessa simulação em pseudocódigo.
+```javascript
+INÍCIO
+	Variáveis:
+	tempo = 0;
+	tempo_maximo = 10; // segundos
+	aceleracao = 2; //metro por segundo ao quadrado
+	velocidade = 0;
+	velocidade_inicial = 0;
+	velocidade máxima = 10; // metros por segundo
+	distancia = 0;
+	distancia_inicial = 0;
+	distancia_maxima = 20; // metros
 
+	Enquanto verdadeiro:
+		tempo = tempo + 1;
+		distancia = distancia_inicial + velocidade_inicial * tempo + (aceleracao*tempo^2)/2
+		velocidade = velocidade_inicial + tempo*aceleracao;
+		
+		Se velocidade >= velocidade_maxima OU tempo >= tempo_maximo OU distancia >= distancia_maxima:
+			Saia do enquanto
+		Fim-se
+	Fim enquanto
+	Imprima tempo/60 //convertendo para minutos
+		
+FIM
+```
 
 
 ______
@@ -294,4 +352,39 @@ matrizB <- [[9, 8, 7], [6, 5, 4], [3, 2, 1]]
 matrizSoma <- SomaDeMatrizes(matrizA, matrizB)
 Escrever("Soma das matrizes:")
 ImprimirMatriz(matrizSoma)
+```
+```javascript
+Função MultiplicacaoDeMatrizes(matrizA, matrizB):
+    linhasA <- tamanho(matrizA)
+    colunasA <- tamanho(matrizA[0])
+    linhasB <- tamanho(matrizB)
+    colunasB <- tamanho(matrizB[0])
+
+    # Verifica se as matrizes podem ser multiplicadas
+    Se colunasA ≠ linhasB então:
+        Retornar "As matrizes não podem ser multiplicadas. O número de colunas de A é diferente do número de linhas de B."
+    
+    matrizResultado <- novaMatriz(linhasA, colunasB)
+
+    Para i de 0 até linhasA-1 faça:
+        Para j de 0 até colunasB-1 faça:
+            elemento <- 0
+            Para k de 0 até colunasA-1 faça:
+                elemento += matrizA[i][k] * matrizB[k][j]
+		k+=1
+	    
+            matrizResultado[i][j] <- elemento
+            j += 1
+        i += 1
+    Retornar matrizResultado
+
+
+# Exemplo de uso da função
+matrizA <- [[1, 2, 3], [4, 5, 6]]
+matrizB <- [[7, 8], [9, 10], [11, 12]]
+
+matrizProduto <- MultiplicacaoDeMatrizes(matrizA, matrizB)
+Escrever("Produto das matrizes:")
+ImprimirMatriz(matrizProduto)
+
 ```
