@@ -304,23 +304,25 @@ INÍCIO
 	aceleracao = 2; //metro por segundo ao quadrado
 	velocidade = 0;
 	velocidade_inicial = 0;
-	velocidade máxima = 10; // metros por segundo
+	velocidade_maxima = 10; // metros por segundo
 	distancia = 0;
 	distancia_inicial = 0;
 	distancia_maxima = 20; // metros
 
 	Enquanto verdadeiro:
-		tempo = tempo + 1;
-		distancia = distancia_inicial + velocidade_inicial * tempo + (aceleracao*tempo^2)/2
-		velocidade = velocidade_inicial + tempo*aceleracao;
+		tempo++;
+		distancia = distancia_inicial + velocidade_inicial * tempo + (aceleracao * Math.pow(tempo, 2)) / 2;
+		velocidade = velocidade_inicial + tempo * aceleracao;
 		
 		Se velocidade >= velocidade_maxima OU tempo >= tempo_maximo OU distancia >= distancia_maxima:
 			Saia do enquanto
 		Fim-se
+
+		Imprima tempo/60; //convertendo para minutos
 	Fim enquanto
-	Imprima tempo/60 //convertendo para minutos
-		
+	Imprima 'Esse é o tempo no qual o carro levou:' tempo/60;
 FIM
+
 ```
 
 
@@ -371,11 +373,9 @@ Função MultiplicacaoDeMatrizes(matrizA, matrizB):
             elemento <- 0
             Para k de 0 até colunasA-1 faça:
                 elemento += matrizA[i][k] * matrizB[k][j]
-		k+=1
 	    
             matrizResultado[i][j] <- elemento
-            j += 1
-        i += 1
+
     Retornar matrizResultado
 
 
@@ -384,7 +384,8 @@ matrizA <- [[1, 2, 3], [4, 5, 6]]
 matrizB <- [[7, 8], [9, 10], [11, 12]]
 
 matrizProduto <- MultiplicacaoDeMatrizes(matrizA, matrizB)
-Escrever("Produto das matrizes:")
+console.log("Produto das matrizes:")
 ImprimirMatriz(matrizProduto)
+
 
 ```
