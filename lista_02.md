@@ -232,16 +232,16 @@ ______
 ______
 ```javascript
 INÍCIO
-Variáveis:
-	idade = Imprima 'Insira sua idade' e receba um número 
+variáveis:
+	idade = imprima 'Insira sua idade' e receba um número 
 
-Se idade < 16 então
+se idade < 16 então
 	Imprima 'Não pode votar!'
-Senão, se idade >= 16 E idade < 18 então
+senão, se idade >= 16 E idade < 18 então
 	Imprima 'Voto facultativo!'
-Senão
+senão então
 	Imprima 'Voto obrigatório'
-Fim-se
+fim se
 
 FIM
 ```
@@ -378,7 +378,7 @@ função multiplicacaoMatriz(matrizA, matrizB)
     se colunasA não for igual a linhasB então
         exibir "Não é possível multiplicar as matrizes: número de colunas da matriz A não é igual ao número de linhas da matriz B."
         retornar
-    fim Se
+    fim se
     
     resultado = []
     para cada i de 0 até linhasA-1 fazer
@@ -387,13 +387,13 @@ função multiplicacaoMatriz(matrizA, matrizB)
             soma = 0
             Para cada k de 0 até colunasA-1 fazer
                 soma = soma + matrizA[i][k] * matrizB[k][j]
-            fim Para
+            fim para
             resultado[i][j] = soma
-        fim Para
-    fim Para
+        fim para
+    fim para
     
     retornar resultado
-fim Função
+fim função
 
 // Exemplo de uso:
 matrizA = [[1, 2], [3, 4]]
