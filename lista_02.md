@@ -332,7 +332,7 @@ velocidadeMaxima = 20 // m/s
 tempoMaximo = 200 // segundos
 
 tempoCorrida = simularCorrida(distancia, velocidadeInicial, aceleracao, velocidadeMaxima, tempoMaximo)
-exibir "O carro levará " + tempoCorrida.toFixed(2) + " segundos para completar a corrida."
+exibir "O carro levará " + tempoCorrida + " segundos para completar a corrida."
 FIM
 
 ```
