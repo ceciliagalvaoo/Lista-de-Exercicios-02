@@ -356,36 +356,39 @@ Escrever("Soma das matrizes:")
 ImprimirMatriz(matrizSoma)
 ```
 ```javascript
-Função MultiplicacaoDeMatrizes(matrizA, matrizB):
-    linhasA <- tamanho(matrizA)
-    colunasA <- tamanho(matrizA[0])
-    linhasB <- tamanho(matrizB)
-    colunasB <- tamanho(matrizB[0])
-
-    # Verifica se as matrizes podem ser multiplicadas
-    Se colunasA ≠ linhasB então:
-        Retornar "As matrizes não podem ser multiplicadas. O número de colunas de A é diferente do número de linhas de B."
+INÍCIO
+Função multiplicacaoMatriz(matrizA, matrizB)
+    linhasA = tamanho da matrizA
+    colunasA = tamanho da primeira linha de matrizA
+    linhasB = tamanho da matrizB
+    colunasB = tamanho da primeira linha de matrizB
     
-    matrizResultado <- novaMatriz(linhasA, colunasB)
+    Se colunasA não for igual a linhasB então
+        Exibir "Não é possível multiplicar as matrizes: número de colunas da matriz A não é igual ao número de linhas da matriz B."
+        Retornar
+    Fim Se
+    
+    resultado = []
+    Para cada i de 0 até linhasA-1 fazer
+        resultado[i] = []
+        Para cada j de 0 até colunasB-1 fazer
+            soma = 0
+            Para cada k de 0 até colunasA-1 fazer
+                soma = soma + matrizA[i][k] * matrizB[k][j]
+            Fim Para
+            resultado[i][j] = soma
+        Fim Para
+    Fim Para
+    
+    Retornar resultado
+Fim Função
 
-    Para i de 0 até linhasA-1 faça:
-        Para j de 0 até colunasB-1 faça:
-            elemento <- 0
-            Para k de 0 até colunasA-1 faça:
-                elemento += matrizA[i][k] * matrizB[k][j]
-	    
-            matrizResultado[i][j] <- elemento
-
-    Retornar matrizResultado
-
-
-# Exemplo de uso da função
-matrizA <- [[1, 2, 3], [4, 5, 6]]
-matrizB <- [[7, 8], [9, 10], [11, 12]]
-
-matrizProduto <- MultiplicacaoDeMatrizes(matrizA, matrizB)
-console.log("Produto das matrizes:")
-ImprimirMatriz(matrizProduto)
+// Exemplo de uso:
+matrizA = [[1, 2], [3, 4]]
+matrizB = [[5, 6], [7, 8]]
+resultado = multiplicacaoMatriz(matrizA, matrizB)
+Exibir resultado // Saída: [[19, 22], [43, 50]]
+FIM
 
 
 ```
