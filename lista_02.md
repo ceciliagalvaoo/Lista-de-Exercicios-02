@@ -298,29 +298,41 @@ ______
 **9)** Você foi contratado(a) como estagiário(a) da Tesla e está participando do desenvolvimento de um programa para simular o desempenho de um carro elétrico em uma corrida. Seu objetivo é determinar em quantos minutos o carro levará para completar uma determinada distância, levando em consideração uma velocidade inicial e uma taxa de aceleração constante. No entanto, você deseja garantir que o carro não exceda uma velocidade máxima nem que a corrida demore mais do que um tempo máximo. Implemente a lógica dessa simulação em pseudocódigo.
 ```javascript
 INÍCIO
-	Variáveis:
-	tempo = 0;
-	tempo_maximo = 10; // segundos
-	aceleracao = 2; //metro por segundo ao quadrado
-	velocidade = 0;
-	velocidade_inicial = 0;
-	velocidade_maxima = 10; // metros por segundo
-	distancia = 0;
-	distancia_inicial = 0;
-	distancia_maxima = 20; // metros
+função simularCorrida(distancia, velocidadeInicial, aceleracao, velocidadeMaxima, tempoMaximo)
+    tempo = 0
+    velocidade = velocidadeInicial
 
-	Enquanto verdadeiro:
-		tempo++;
-		distancia = distancia_inicial + velocidade_inicial * tempo + (aceleracao * Math.pow(tempo, 2)) / 2;
-		velocidade = velocidade_inicial + tempo * aceleracao;
-		
-		Se velocidade >= velocidade_maxima OU tempo >= tempo_maximo OU distancia >= distancia_maxima:
-			Saia do enquanto
-		Fim-se
+    enquanto (distancia > 0 E tempo <= tempoMaximo) fazer
+        tempoParaAcelerar = (velocidadeMaxima - velocidade) / aceleracao
+        distanciaPercorridaComAceleracao = (velocidade + velocidadeMaxima) / 2 * tempoParaAcelerar
+        distanciaPercorridaSemAceleracao = velocidade * (tempoMaximo - tempoParaAcelerar)
+        
+        se (distanciaPercorridaComAceleracao >= distancia) então
+            tempoParaAlcancarDistancia = (-velocidade + raizQuadrada(velocidade ^ 2 + 2 * aceleracao * distancia)) / aceleracao
+            tempo += tempoParaAlcancarDistancia
+            distancia = 0
+        senao se (distanciaPercorridaComAceleracao + distanciaPercorridaSemAceleracao >= distancia) então
+            tempoRestante = (distancia - distanciaPercorridaComAceleracao) / velocidadeMaxima
+            tempo += tempoParaAcelerar + tempoRestante
+            distancia = 0
+        senao então
+            tempo += tempoMaximo - tempoParaAcelerar
+            distancia = 0
+        fim se
+    fim enquanto
 
-		Imprima tempo/60; //convertendo para minutos
-	Fim enquanto
-	Imprima 'Esse é o tempo no qual o carro levou:' tempo/60;
+    retorne tempo
+fim função
+
+// Exemplo de uso
+distancia = 1000 // metros
+velocidadeInicial = 0 // m/s
+aceleracao = 2 // m/s^2
+velocidadeMaxima = 20 // m/s
+tempoMaximo = 200 // segundos
+
+tempoCorrida = simularCorrida(distancia, velocidadeInicial, aceleracao, velocidadeMaxima, tempoMaximo)
+exibir "O carro levará " + tempoCorrida.toFixed(2) + " segundos para completar a corrida."
 FIM
 
 ```
@@ -357,37 +369,37 @@ ImprimirMatriz(matrizSoma)
 ```
 ```javascript
 INÍCIO
-Função multiplicacaoMatriz(matrizA, matrizB)
+função multiplicacaoMatriz(matrizA, matrizB)
     linhasA = tamanho da matrizA
     colunasA = tamanho da primeira linha de matrizA
     linhasB = tamanho da matrizB
     colunasB = tamanho da primeira linha de matrizB
     
-    Se colunasA não for igual a linhasB então
-        Exibir "Não é possível multiplicar as matrizes: número de colunas da matriz A não é igual ao número de linhas da matriz B."
-        Retornar
-    Fim Se
+    se colunasA não for igual a linhasB então
+        exibir "Não é possível multiplicar as matrizes: número de colunas da matriz A não é igual ao número de linhas da matriz B."
+        retornar
+    fim Se
     
     resultado = []
-    Para cada i de 0 até linhasA-1 fazer
+    para cada i de 0 até linhasA-1 fazer
         resultado[i] = []
-        Para cada j de 0 até colunasB-1 fazer
+        para cada j de 0 até colunasB-1 fazer
             soma = 0
             Para cada k de 0 até colunasA-1 fazer
                 soma = soma + matrizA[i][k] * matrizB[k][j]
-            Fim Para
+            fim Para
             resultado[i][j] = soma
-        Fim Para
-    Fim Para
+        fim Para
+    fim Para
     
-    Retornar resultado
-Fim Função
+    retornar resultado
+fim Função
 
 // Exemplo de uso:
 matrizA = [[1, 2], [3, 4]]
 matrizB = [[5, 6], [7, 8]]
 resultado = multiplicacaoMatriz(matrizA, matrizB)
-Exibir resultado // Saída: [[19, 22], [43, 50]]
+exibir resultado // Saída: [[19, 22], [43, 50]]
 FIM
 
 
